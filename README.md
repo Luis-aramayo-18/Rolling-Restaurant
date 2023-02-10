@@ -2,11 +2,11 @@
 
 Somos un grupo de personas por amor al código presentando nuestro último proyecto de la mano de los mejores ROLLINGCODE 🤍.
 
-_Sitio de una hamburgueria que cuenta con información del restaurante, ademas te permite navegar, loguearte y hacer tu pedido. Tambien posee una sección de "administrador" para agregar, editar o eliminar productos, entre otras funciones._
+_Sitio de una hamburgueseria que cuenta con información del restaurante, ademas te permite navegar, loguearte y hacer tu pedido. Tambien posee una sección de "administrador" para agregar, editar o eliminar productos, entre otras funciones._
 
 * **Aramayo, Luis** - [Luis-aramayo-18](https://github.com/Luis-aramayo-18)
 * **Bejarano, Paula** - [paubejarano](https://github.com/paubejarano)
-* **Cordoba de Baria, Isais** 
+* **Cordoba de Baria, Isais** - [Isaias-debautrox](https://github.com/Isaias-debautrox)
 * **Diaz, Felix** - [felixgerardodiaz](https://github.com/felixgerardodiaz)
 * **Gonzalez, Jenny** - [Jenny-gonzalez](https://github.com/Jenny-gonzalez)
 * **Ibañez, Fabiana** - [Fabi-ibz](https://github.com/Fabi-ibz)
