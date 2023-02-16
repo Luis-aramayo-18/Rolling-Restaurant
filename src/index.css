@@ -1,4 +1,5 @@
-body {
-
-}
-
+body{
+    background-image: url(../public/img/fondoMenu_3.png);
+    padding-top:7rem;
+    color: white;
+  }
