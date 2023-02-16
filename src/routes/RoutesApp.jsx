@@ -5,6 +5,7 @@ import Footer from '../components/Footer/Footer'
 import FormCliente from '../components/FormCliente/FormCliente'
 import Login from '../components/Login/Login'
 import AboutUs from '../pages/AboutUs'
+import Administracion from '../pages/Administracion'
 import Contact from '../pages/Contact'
 import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
@@ -28,6 +29,7 @@ const RoutesApp = () => {
             <Route path='/*' element={<NotFound/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/registro' element={<FormCliente changeClientsList={changeClientsList} clientes={clients}/>}/>
+            <Route path="/Administracion" element={<Administracion/>}/>
         </Routes>
       <Footer/>
     </BrowserRouter>

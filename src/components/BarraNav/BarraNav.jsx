@@ -33,6 +33,10 @@ let inactiveStyle ={
             <NavLink className="ms-3 py-2 nav-link" to="/nosotros" style={({ isActive }) =>
               isActive ? activeStyle : inactiveStyle
             }>Nosotros</NavLink>
+           <NavLink className="ms-3 py-2 nav-link" to="/administracion" style={({ isActive }) =>
+              isActive ? activeStyle : inactiveStyle
+            }>Administracion</NavLink>
+
             <NavLink className="ms-3 py-2 nav-link" to="/contacto" style={({ isActive }) =>
               isActive ? activeStyle : inactiveStyle
             }>Contacto</NavLink>
