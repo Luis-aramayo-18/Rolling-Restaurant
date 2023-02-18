@@ -1,75 +1,60 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
+import "./formAdmin.css";
 
 const FormAdmin = () => {
   return (
-    <div className="row col-xl-6 col-sm-12 ">
-      <h1>Cargar Producto</h1>
-      <hr />
-      <section className="bg-transparent container text-light py-3 rounded ">
-        <Form id="formAdmin">
-          <div className="mt-3">
-            <label for="nombreProducto">Nombre del producto</label>
-            <input
-              maxlength="50"
-              minlength="1"
+    <Card className="formAdminCard">
+      <Card.Body>
+        <Card.Title className="text-dark">Añadir Producto</Card.Title>
+        <hr />
+
+        <Form>
+          <Form.Group className="mb-3" controlId="formAdminNombre">
+            <Form.Label className="text-dark">Nombre del producto</Form.Label>
+            <Form.Control
               type="text"
-              className="form-control"
-              id="nombreProducto"
-              placeholder="Ej: Papas Fritas"
+              placeholder="Ingrese nombre del producto"
             />
-          </div>
-          <div className="mt-3">
-            <label for="urlImagen">URL de la imagen</label>
-            <input
-              maxlength="50"
-              minlength="1"
-              type="text"
-              className="form-control"
-              id="urlImagen"
-              placeholder="http://..."
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formAdminURLImagen">
+            <Form.Label className="text-dark">URL de la Imagen</Form.Label>
+            <Form.Control type="URL" placeholder="Ingrese URL de la Imagen" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formAdminPrecio">
+            <Form.Label className="text-dark">Precio del producto</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Ingrese precio del producto"
             />
-          </div>
+          </Form.Group>
 
-          <div className="mt-3">
-            <label for="precio">Precio</label>
-            <input
-              maxlength="50"
-              minlength="1"
-              type="text"
-              className="form-control"
-              id="precio"
-              placeholder="Ej: $50"
-            />
-          </div>
 
-          <div className="mb-3 mt-3">
-            <label for="descripcion" className="form-label">
-              Descripción básica
-            </label>
-            <textarea
-              className="form-control"
-              id="descripcion"
-              rows="3"
-            ></textarea>
-          </div>
+          <Form.Group className="mb-3" controlId="formAdminDescripcion">
+            <Form.Label className="text-dark">Descripción del producto</Form.Label>
+            <Form.Control as="textarea" placeholder="Ingrese la descripción del producto" />
+          </Form.Group>
 
-          <div className="mb-3 mt-3">
-            <label for="disponible" className="form-label">
-              ¿Está disponible?
-            </label>
-            <Form.Check type="switch" id="disponible" label="Si" />
-          </div>
 
-          <div className="text-end mt-3">
-            <button id="buttonCargar" className="btn btn-danger" type="submit">
-              Cargar
-            </button>
-            <hr className="mt-4" />
-          </div>
+          <Form.Group className="mb-3" controlId="formAdminDisponbible">
+            <Form.Label className="text-dark">¿Está disponible?</Form.Label>
+            <br />
+            <Form.Label className="text-dark mx-2">Si</Form.Label>
+            <Form.Check inline label="Si" name="rb-Disponible" type="radio" className="text-dark"/>
+            <Form.Label className="text-dark mx-2">No</Form.Label>
+            <Form.Check inline label="No" name="rb-Disponible" type="radio" className="text-dark"/>
+          </Form.Group>
+
+
+
+          <Button variant="danger" type="submit">
+            Guardar
+          </Button>
         </Form>
-      </section>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 
