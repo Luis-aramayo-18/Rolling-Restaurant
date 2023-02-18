@@ -1,8 +1,8 @@
 import React from "react";
 import FormAdmin from "../FormAdmin/FormAdmin";
-import TableAdmin from "../TableAdmin/TableAdmin";
+import ListAdmin from "../ListAdmin/ListAdmin";
 
-const MainAdministracion = () => {
+const MainAdmin = () => {
   return (
     <main className="container my-2">
       <section className="my-4 d-flex justify-content-center">
@@ -11,10 +11,10 @@ const MainAdministracion = () => {
       </section>
 
       <div className="mt-0 pt-3">
-        <TableAdmin />
+        <ListAdmin />
       </div>
     </main>
   );
 };
 
-export default MainAdministracion;
+export default MainAdmin;

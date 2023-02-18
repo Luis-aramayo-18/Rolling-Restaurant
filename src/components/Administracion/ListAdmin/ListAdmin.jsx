@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-const TableAdmin = () => {
+const ListAdmin = () => {
   return (
     <div className="container bg-dark">
       <h3 className="text-light">Productos Cargados</h3>
@@ -73,4 +73,4 @@ const TableAdmin = () => {
   );
 };
 
-export default TableAdmin;
+export default ListAdmin;
