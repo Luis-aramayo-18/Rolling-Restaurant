@@ -43,7 +43,7 @@ const FormCliente = (props) => {
   // }
 
   return (
-    <Container className='pb-5 vh-100' id='form-cliente'>
+    <Container className='pb-5' id='form-cliente'>
       <h3 className="text-light text-center">Registrate para acceder a nuestro menú 🍔🍟🍺</h3>
         <Form onSubmit={handleSubmit(costumHandleSubmit)} className='bg-light p-5 text-center rounded'>
         <Form.Group className="mb-3" controlId="name">
