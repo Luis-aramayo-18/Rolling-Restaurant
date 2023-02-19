@@ -80,7 +80,7 @@ const FormAdmin = () => {
                 },
                 pattern: {
                   value:
-                    /[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/,
+                    /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
                   message: "Error: URL incorrecta",
                 },
               })}
@@ -106,7 +106,7 @@ const FormAdmin = () => {
                   message: "Error: Precio no puede estar vacío",
                 },
                 pattern: {
-                  value: /falta hacer/,
+                  value: /^[0-9]+,[0-9]{2}$/,
 
                   message: "Error: Formato incorrecto (Ej: 345,05)",
                 },
