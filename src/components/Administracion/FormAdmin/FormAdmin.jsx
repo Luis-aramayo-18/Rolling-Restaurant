@@ -129,30 +129,33 @@ const FormAdmin = () => {
               Descripción del producto
             </Form.Label>
             <Form.Control
+              {...register("formAdmin_descripcion", {
+                maxLength: {
+                  value: 256,
+                  message: "Error: máximo de caracteres excedidos (256)",
+                },
+              })}
               as="textarea"
               placeholder="Ingrese descripción del producto"
             />
+            <ErrorMessage
+              errors={errors}
+              name="formAdmin_descripcion"
+              render={({ message }) => (
+                <p className="text-danger text-left p-1">{message}</p>
+              )}
+            />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formAdminDisponbible">
+          <Form.Group className="mb-3" controlId="formAdminDisponible">
             <Form.Label className="text-dark">¿Está disponible?</Form.Label>
-            <br />
-            <Form.Label className="text-dark mx-2">Si</Form.Label>
-            <Form.Check
-              inline
-              label="Si"
-              name="rb-Disponible"
-              type="radio"
-              className="text-dark"
-            />
-            <Form.Label className="text-dark mx-2">No</Form.Label>
-            <Form.Check
-              inline
-              label="No"
-              name="rb-Disponible"
-              type="radio"
-              className="text-dark"
-            />
+            <Form.Select
+              {...register("formAdmin_disponible")}
+              aria-label="Elija una opción..."
+            >
+              <option value="si">Si</option>
+              <option value="no">No</option>
+            </Form.Select>
           </Form.Group>
 
           <div className="text-end">
