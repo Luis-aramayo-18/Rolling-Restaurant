@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 
-const ItemAdmin = (props) => {
-  const { id, nombre, categoria, url_imagen, precio, descripcion, disponible } =
+const ProductAdmin = (props) => {
+  const { name: nombre, image: url_imagen, price: precio, description: descripcion } =
     props;
   return (
     <Card>
@@ -20,4 +20,4 @@ const ItemAdmin = (props) => {
   );
 };
 
-export default ItemAdmin;
+export default ProductAdmin;

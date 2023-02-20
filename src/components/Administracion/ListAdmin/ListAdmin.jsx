@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import ItemAdmin from "../ItemAdmin/ItemAdmin";
+import ProductAdmin from "../ProductAdmin/ProductAdmin";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
@@ -21,7 +21,7 @@ const ListAdmin = () => {
       {items.map((elemento) => {
         return (
           <Col xs={12} md={4} lg={3} key={elemento.id} className="p-2">
-            <ItemAdmin {...elemento} />
+            <ProductAdmin {...elemento} />
           </Col>
         );
       })}
