@@ -84,7 +84,7 @@ const FormAdmin = () => {
                   message: "Error: URL incorrecta",
                 },
               })}
-              type="text"
+              type="url"
               placeholder="Ingrese URL de la Imagen"
             />
 
@@ -106,12 +106,13 @@ const FormAdmin = () => {
                   message: "Error: Precio no puede estar vacío",
                 },
                 pattern: {
-                  value: /^[0-9]+,[0-9]{2}$/,
-
-                  message: "Error: Formato incorrecto (Ej: 345,05)",
+                  value: /^[0-9]+.[0-9]{1,2}$/,
+                  message: "Error: Formato incorrecto (Ej: 345.05)",
                 },
               })}
-              type="text"
+              type="number"
+              min="0"
+              step="0.01"
               placeholder="Ingrese precio del producto"
             />
 
@@ -136,6 +137,7 @@ const FormAdmin = () => {
                 },
               })}
               as="textarea"
+              rows="3"
               placeholder="Ingrese descripción del producto"
             />
             <ErrorMessage

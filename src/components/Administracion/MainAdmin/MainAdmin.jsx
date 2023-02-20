@@ -6,12 +6,14 @@ import "./mainAdmin.css";
 
 const MainAdmin = () => {
   return (
-    <div className="mainAdmin">
+    <Container className="mainAdmin">
+      <h1 className="text-center">Panel de Administración</h1>
+      <hr />
       <FormAdmin />
       <Container className="my-5">
         <ListAdmin />
       </Container>
-    </div>
+    </Container>
   );
 };
 
