@@ -2,7 +2,11 @@ import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import axios from "axios";
+
 import "./formAdmin.css";
+
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const FormAdmin = () => {
   const {
@@ -12,7 +16,14 @@ const FormAdmin = () => {
   } = useForm();
 
   const customHandleSubmit = (data) => {
-    console.log(data);
+    axios.post(`${baseUrl}/product`, {
+      name: data.formAdmin_nombre,
+      category: data.formAdmin_categoria,
+      image: data.formAdmin_urlimagen,
+      price: data.formAdmin_precio,
+      decription: data.formAdmin_descripcion,
+      isAvailable: data.formAdmin_disponible,
+    });
   };
 
   return (
