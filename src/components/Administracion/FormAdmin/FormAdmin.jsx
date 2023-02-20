@@ -15,8 +15,8 @@ const FormAdmin = () => {
     formState: { errors },
   } = useForm();
 
-  const customHandleSubmit = (data) => {
-    axios.post(`${baseUrl}/product`, {
+  const customHandleSubmit = async (data) => {
+    await axios.post(`${baseUrl}/product`, {
       name: data.formAdmin_nombre,
       category: data.formAdmin_categoria,
       image: data.formAdmin_urlimagen,
