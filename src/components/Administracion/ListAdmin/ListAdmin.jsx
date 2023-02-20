@@ -10,7 +10,7 @@ const ListAdmin = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const data = await axios.get(`${baseUrl}/items`);
+      const data = await axios.get(`${baseUrl}/products`);
       setItems(data.data);
     };
     fetchItems();
