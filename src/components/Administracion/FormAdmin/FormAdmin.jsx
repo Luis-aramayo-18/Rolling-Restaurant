@@ -22,7 +22,7 @@ const FormAdmin = () => {
       image: data.formAdmin_urlimagen,
       price: data.formAdmin_precio,
       decription: data.formAdmin_descripcion,
-      isAvailable: data.formAdmin_disponible,
+      isActive: data.formAdmin_disponible,
     });
   };
 
