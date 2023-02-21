@@ -7,7 +7,8 @@ import "./tableRowAdmin.css";
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 const productsGetUrl = process.env.REACT_APP_PRODUCTS_GET_URL;
 
-const TableAdmin = () => {
+const TableAdmin = (props) => {
+  const { setModifyingProduct } = props;
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -34,7 +35,8 @@ const TableAdmin = () => {
       </thead>
       <tbody>
         {items.map((elemento) => {
-          return <TableRowAdmin key={elemento.id} {...elemento} />;
+  const { setModifyingProduct } = props;
+          return <TableRowAdmin setModifyingProduct={setModifyingProduct}  key={elemento.id} {...elemento} />;
         })}
       </tbody>
     </Table>

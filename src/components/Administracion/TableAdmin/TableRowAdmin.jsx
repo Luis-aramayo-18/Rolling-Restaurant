@@ -6,8 +6,19 @@ const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 const productDeleteUrl = process.env.REACT_APP_PRODUCT_DELETE_URL;
 
 const TableRowAdmin = (props) => {
-  const { id, name, category, image, price, description, isActive } = props;
-  const handleEdit = () => {};
+  const {
+    id,
+    name,
+    category,
+    image,
+    price,
+    description,
+    isActive,
+    setModifyingProduct,
+  } = props;
+  const handleEdit = () => {
+    setModifyingProduct(id);
+  };
   const handleDelete = () => {
     Swal.fire({
       title: "Eliminar",

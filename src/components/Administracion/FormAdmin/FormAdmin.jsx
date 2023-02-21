@@ -3,17 +3,40 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+
 import "./formAdmin.css";
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 const productPostUrl = process.env.REACT_APP_PRODUCT_POST_URL;
+const productGetUrl = process.env.REACT_APP_PRODUCT_GET_URL;
 
-const FormAdmin = () => {
+const FormAdmin = (props) => {
+  const { modifyingProduct, setModifyingProduct } = props;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await axios.get(
+        `${baseUrl}${productGetUrl}/${modifyingProduct}`
+      );
+      setValue("formAdmin_nombre", response.data.name);
+      setValue("formAdmin_categoria", response.data.category);
+      setValue("formAdmin_urlimagen", response.data.image);
+      setValue("formAdmin_precio", response.data.price);
+      setValue("formAdmin_descripcion", response.data.description);
+      setValue("formAdmin_disponible", response.data.isActive);
+    };
+    if (modifyingProduct) {
+      fetchProduct();
+    }
+  }, [modifyingProduct, setValue]);
 
   const customHandleSubmit = async (data) => {
     const response = await axios.post(`${baseUrl}${productPostUrl}`, {
