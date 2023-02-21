@@ -32,6 +32,8 @@ const FormAdmin = () => {
         timer: 1250,
         showCancelButton: false,
         showConfirmButton: false,
+      }).then(() => {
+        window.location.reload();
       });
     } else {
       Swal.fire({
