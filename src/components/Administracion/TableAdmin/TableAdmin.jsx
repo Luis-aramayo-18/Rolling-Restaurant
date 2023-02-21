@@ -5,7 +5,7 @@ import TableRowAdmin from "./TableRowAdmin";
 import "./tableRowAdmin.css";
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
-const productsGetUrl=process.env.REACT_APP_PRODUCTS_GET_URL;
+const productsGetUrl = process.env.REACT_APP_PRODUCTS_GET_URL;
 
 const TableAdmin = () => {
   const [items, setItems] = useState([]);

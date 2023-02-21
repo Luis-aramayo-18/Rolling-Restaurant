@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import ProductAdmin from "../ProductAdmin/ProductAdmin";
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
-const productsGetUrl=process.env.REACT_APP_PRODUCTS_GET_URL
+const productsGetUrl = process.env.REACT_APP_PRODUCTS_GET_URL;
 
 const ListAdmin = () => {
   const [items, setItems] = useState([]);

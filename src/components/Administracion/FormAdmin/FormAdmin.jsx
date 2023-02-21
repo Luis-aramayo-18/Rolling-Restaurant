@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import "./formAdmin.css";
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
-const productPostUrl=process.env.REACT_APP_PRODUCT_POST_URL
+const productPostUrl = process.env.REACT_APP_PRODUCT_POST_URL;
 
 const FormAdmin = () => {
   const {
