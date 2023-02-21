@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import FormAdmin from "../FormAdmin/FormAdmin";
-import ListAdmin from "../ListAdmin/ListAdmin";
+import TableAdmin from "../TableAdmin/TableAdmin";
 import "./mainAdmin.css";
 
 const MainAdmin = () => {
@@ -11,7 +11,7 @@ const MainAdmin = () => {
       <hr />
       <FormAdmin />
       <Container className="my-5">
-        <ListAdmin />
+        <TableAdmin />
       </Container>
     </Container>
   );
