@@ -5,7 +5,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import "./formAdmin.css";
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+const productPostUrl=process.env.REACT_APP_PRODUCT_POST_URL
 
 const FormAdmin = () => {
   const {
@@ -15,7 +16,7 @@ const FormAdmin = () => {
   } = useForm();
 
   const customHandleSubmit = async (data) => {
-    const response = await axios.post(`${baseUrl}/product`, {
+    const response = await axios.post(`${baseUrl}${productPostUrl}`, {
       name: data.formAdmin_nombre,
       category: data.formAdmin_categoria,
       image: data.formAdmin_urlimagen,
