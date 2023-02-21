@@ -35,8 +35,13 @@ const TableAdmin = (props) => {
       </thead>
       <tbody>
         {items.map((elemento) => {
-  const { setModifyingProduct } = props;
-          return <TableRowAdmin setModifyingProduct={setModifyingProduct}  key={elemento.id} {...elemento} />;
+          return (
+            <TableRowAdmin
+              setModifyingProduct={setModifyingProduct}
+              key={elemento.id}
+              {...elemento}
+            />
+          );
         })}
       </tbody>
     </Table>
