@@ -1,8 +1,12 @@
-import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import axios from "axios";
+import Swal from "sweetalert2";
 import "./formAdmin.css";
+
+const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+const productPostUrl = process.env.REACT_APP_PRODUCT_POST_URL;
 
 const FormAdmin = () => {
   const {
@@ -11,8 +15,37 @@ const FormAdmin = () => {
     formState: { errors },
   } = useForm();
 
-  const customHandleSubmit = (data) => {
-    console.log(data);
+  const customHandleSubmit = async (data) => {
+    const response = await axios.post(`${baseUrl}${productPostUrl}`, {
+      name: data.formAdmin_nombre,
+      category: data.formAdmin_categoria,
+      image: data.formAdmin_urlimagen,
+      price: data.formAdmin_precio,
+      description: data.formAdmin_descripcion,
+      isActive: data.formAdmin_disponible,
+    });
+
+    if (response.status === 201) {
+      Swal.fire({
+        title: "Operacion exitosa",
+        text: "Producto agregado correctamente",
+        icon: "success",
+        timer: 1250,
+        showCancelButton: false,
+        showConfirmButton: false,
+      }).then(() => {
+        window.location.reload();
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: `Ocurrió un error al guardar el producto: ${response.statusText}`,
+        icon: "error",
+        timer: 1250,
+        showCancelButton: false,
+        showConfirmButton: false,
+      });
+    }
   };
 
   return (

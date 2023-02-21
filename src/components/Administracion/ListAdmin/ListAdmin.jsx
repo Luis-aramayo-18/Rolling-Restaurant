@@ -1,16 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductAdmin from "../ProductAdmin/ProductAdmin";
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+const productsGetUrl = process.env.REACT_APP_PRODUCTS_GET_URL;
 
 const ListAdmin = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     const fetchItems = async () => {
-      const data = await axios.get(`${baseUrl}/products`);
+      const data = await axios.get(`${baseUrl}${productsGetUrl}`);
       setItems(data.data);
     };
     fetchItems();
