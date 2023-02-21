@@ -1,9 +1,43 @@
-import React from 'react'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Table } from "react-bootstrap";
+import TableRowAdmin from "./TableRowAdmin";
+import "./tableRowAdmin.css";
+
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const TableAdmin = () => {
-  return (
-    <div>TableAdmin</div>
-  )
-}
+  const [items, setItems] = useState([]);
 
-export default TableAdmin
+  useEffect(() => {
+    const fetchItems = async () => {
+      const data = await axios.get(`${baseUrl}/products`);
+      setItems(data.data);
+    };
+    fetchItems();
+  }, []);
+
+  return (
+    <Table striped hover responsive className="mt-5 rounded" variant="dark">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Imagen</th>
+          <td>Precio</td>
+          <td>Descripción</td>
+          <td>Disponible</td>
+          <td>Acciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((elemento) => {
+          return <TableRowAdmin key={elemento.id} {...elemento} />;
+        })}
+      </tbody>
+    </Table>
+  );
+};
+
+export default TableAdmin;
