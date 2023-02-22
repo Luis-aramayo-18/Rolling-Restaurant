@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BarraNav from "../components/BarraNav/BarraNav";
 import Footer from "../components/Footer/Footer";
