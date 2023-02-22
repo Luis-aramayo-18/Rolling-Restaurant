@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
   background-image: url(../public/img/fondoMenu_3.png);
   padding-top: 5rem;
@@ -21,16 +20,11 @@ body {
   height: 100vh;
 }
 
-=======
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 *{
   font-family: 'Oswald', sans-serif;
   font-size:x-large;
   color: white;
-}
-body{
-    background-image: url(../public/img/fondoMenu_3.png);
-    padding-top:5rem;
 }
 
 #img-pedido{
@@ -44,4 +38,3 @@ body{
     height: 250px;
     object-fit: cover;
 }
->>>>>>> 9b4f4b477b669a61b9279bdd84a114952b0291de

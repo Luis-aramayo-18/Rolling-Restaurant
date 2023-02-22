@@ -4,7 +4,7 @@ import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import Producto from '../Producto/Producto';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 
 function MyVerticallyCenteredModal(props) {
     return (
