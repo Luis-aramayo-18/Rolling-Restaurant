@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+const usersGetUrl= process.env.REACT_APP_GET_USERS_URL;
 
 const Login = () => {
 
@@ -17,7 +18,7 @@ const Login = () => {
 
     useEffect(()=>{
         const usersFetch= async ()=>{
-            const data = await axios.get(`${baseUrl}/login`);
+            const data = await axios.get(`${baseUrl}${usersGetUrl}`);
             setUsers(data.data);
         };
         usersFetch();

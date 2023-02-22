@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+const userPostUrl = process.env.REACT_APP_POST_USER_URL;
 
 const FormCliente = () => {
 
@@ -13,7 +14,7 @@ const FormCliente = () => {
 
     const costumHandleSubmit = async (data) =>{
 
-        const res= await axios.post(`${baseUrl}/login`, {
+        const res= await axios.post(`${baseUrl}${userPostUrl}`, {
           name: data.name,
           lastName: data.lastName,
           username: data.username,

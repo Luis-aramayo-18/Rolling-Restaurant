@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Producto from '../Producto/Producto';
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+const productsGetUrl = process.env.REACT_APP_PRODUCTS_GET_URL;
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -40,7 +41,7 @@ const Menu = () => {
 
     useEffect(()=>{
         const productsFetch= async ()=>{
-            const data = await axios.get(`${baseUrl}/products`);
+            const data = await axios.get(`${baseUrl}${productsGetUrl}`);
             setProducts(data.data);
         };
         productsFetch();
