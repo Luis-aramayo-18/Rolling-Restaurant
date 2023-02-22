@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+body {
+  background-image: url(../public/img/fondoMenu_3.png);
+  padding-top: 5rem;
+  color: white;
+}
+
+
+.integrantes {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 100%;
+  object-position: top;
+  margin-top: 3rem;
+}
+
+
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
+
+=======
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 *{
   font-family: 'Oswald', sans-serif;
@@ -20,3 +44,4 @@ body{
     height: 250px;
     object-fit: cover;
 }
+>>>>>>> 9b4f4b477b669a61b9279bdd84a114952b0291de

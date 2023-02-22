@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 import React from 'react'
 import { Carousel, Container } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
@@ -72,3 +74,4 @@ const Home = () => {
 }
 
 export default Home
+>>>>>>> 9b4f4b477b669a61b9279bdd84a114952b0291de
