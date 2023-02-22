@@ -1,9 +1,9 @@
 import React from 'react'
-import MainAdministracion from '../components/Administracion/MainAdministracion/MainAdministracion'
+import MainAdmin from '../components/Administracion/MainAdmin/MainAdmin'
 
 const Administracion = () => {
   return (
-  <MainAdministracion/>
+  <MainAdmin/>
   )
 }
 

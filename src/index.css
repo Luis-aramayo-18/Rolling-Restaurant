@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   background-image: url(../public/img/fondoMenu_3.png);
   padding-top: 5rem;
@@ -20,3 +21,27 @@ body {
   height: 100vh;
 }
 
+=======
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+*{
+  font-family: 'Oswald', sans-serif;
+  font-size:x-large;
+  color: white;
+}
+body{
+    background-image: url(../public/img/fondoMenu_3.png);
+    padding-top:7rem;
+}
+
+#img-pedido{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+#img-rappi{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+>>>>>>> 9b4f4b477b669a61b9279bdd84a114952b0291de
