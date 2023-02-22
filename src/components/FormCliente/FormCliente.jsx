@@ -16,7 +16,6 @@ const FormCliente = (props) => {
         // console.log(clientes)
 
         const newClient= {
-          id: Math.round(Math.random()*10000),
           nombre: data.nombre,
           apellido: data.apellido,
           email: data.email

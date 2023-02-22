@@ -1,13 +1,12 @@
 import { Button, Card, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import axios from "axios";
+import axios from "../../../Api/axios";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 
 import "./formAdmin.css";
 
-const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 const productPostUrl = process.env.REACT_APP_PRODUCT_POST_URL;
 const productGetUrl = process.env.REACT_APP_PRODUCT_GET_URL;
 const productPutUrl = process.env.REACT_APP_PRODUCT_PUT_URL;
@@ -25,7 +24,7 @@ const FormAdmin = (props) => {
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await axios.get(
-        `${baseUrl}${productGetUrl}/${modifyingProduct}`
+        `/products`
       );
       setValue("formAdmin_nombre", response.data.name);
       setValue("formAdmin_categoria", response.data.category);
@@ -43,7 +42,7 @@ const FormAdmin = (props) => {
     if (modifyingProduct) {
       //Caso editar
       const response = await axios.put(
-        `${baseUrl}${productPutUrl}/${modifyingProduct}`,
+        `${productPutUrl}/${modifyingProduct}`,
         {
           name: data.formAdmin_nombre,
           category: data.formAdmin_categoria,
@@ -77,7 +76,7 @@ const FormAdmin = (props) => {
       }
     } else {
       //Caso añadir
-      const response = await axios.post(`${baseUrl}${productPostUrl}`, {
+      const response = await axios.post(`${productPostUrl}`, {
         name: data.formAdmin_nombre,
         category: data.formAdmin_categoria,
         image: data.formAdmin_urlimagen,
