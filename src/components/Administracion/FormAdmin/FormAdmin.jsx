@@ -3,55 +3,119 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+
 import "./formAdmin.css";
 
 const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 const productPostUrl = process.env.REACT_APP_PRODUCT_POST_URL;
+const productGetUrl = process.env.REACT_APP_PRODUCT_GET_URL;
+const productPutUrl = process.env.REACT_APP_PRODUCT_PUT_URL;
 
-const FormAdmin = () => {
+const FormAdmin = (props) => {
+  const { modifyingProduct, setModifyingProduct } = props;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
-  const customHandleSubmit = async (data) => {
-    const response = await axios.post(`${baseUrl}${productPostUrl}`, {
-      name: data.formAdmin_nombre,
-      category: data.formAdmin_categoria,
-      image: data.formAdmin_urlimagen,
-      price: data.formAdmin_precio,
-      description: data.formAdmin_descripcion,
-      isActive: data.formAdmin_disponible,
-    });
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await axios.get(
+        `${baseUrl}${productGetUrl}/${modifyingProduct}`
+      );
+      setValue("formAdmin_nombre", response.data.name);
+      setValue("formAdmin_categoria", response.data.category);
+      setValue("formAdmin_urlimagen", response.data.image);
+      setValue("formAdmin_precio", response.data.price);
+      setValue("formAdmin_descripcion", response.data.description);
+      setValue("formAdmin_disponible", response.data.isActive);
+    };
+    if (modifyingProduct) {
+      fetchProduct();
+    }
+  }, [modifyingProduct, setValue]);
 
-    if (response.status === 201) {
-      Swal.fire({
-        title: "Operacion exitosa",
-        text: "Producto agregado correctamente",
-        icon: "success",
-        timer: 1250,
-        showCancelButton: false,
-        showConfirmButton: false,
-      }).then(() => {
-        window.location.reload();
-      });
+  const customHandleSubmit = async (data) => {
+    if (modifyingProduct) {
+      //Caso editar
+      const response = await axios.put(
+        `${baseUrl}${productPutUrl}/${modifyingProduct}`,
+        {
+          name: data.formAdmin_nombre,
+          category: data.formAdmin_categoria,
+          image: data.formAdmin_urlimagen,
+          price: data.formAdmin_precio,
+          description: data.formAdmin_descripcion,
+          isActive: data.formAdmin_disponible,
+        }
+      );
+      if (response.status === 200) {
+        Swal.fire({
+          title: "Operacion exitosa",
+          text: "Producto editado correctamente",
+          icon: "success",
+          timer: 1250,
+          showCancelButton: false,
+          showConfirmButton: false,
+        }).then(() => {
+          window.location.reload();
+        });
+        setModifyingProduct(null);
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: `Ocurrió un error al editar el producto: ${response.statusText}`,
+          icon: "error",
+          timer: 1250,
+          showCancelButton: false,
+          showConfirmButton: false,
+        });
+      }
     } else {
-      Swal.fire({
-        title: "Error",
-        text: `Ocurrió un error al guardar el producto: ${response.statusText}`,
-        icon: "error",
-        timer: 1250,
-        showCancelButton: false,
-        showConfirmButton: false,
+      //Caso añadir
+      const response = await axios.post(`${baseUrl}${productPostUrl}`, {
+        name: data.formAdmin_nombre,
+        category: data.formAdmin_categoria,
+        image: data.formAdmin_urlimagen,
+        price: data.formAdmin_precio,
+        description: data.formAdmin_descripcion,
+        isActive: data.formAdmin_disponible,
       });
+
+      if (response.status === 201) {
+        Swal.fire({
+          title: "Operacion exitosa",
+          text: "Producto agregado correctamente",
+          icon: "success",
+          timer: 1250,
+          showCancelButton: false,
+          showConfirmButton: false,
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: `Ocurrió un error al guardar el producto: ${response.statusText}`,
+          icon: "error",
+          timer: 1250,
+          showCancelButton: false,
+          showConfirmButton: false,
+        });
+      }
     }
   };
 
   return (
     <Card className="formAdminCard">
       <Card.Body>
-        <Card.Title className="text-dark">Añadir Producto</Card.Title>
+        <Card.Title className="text-dark">
+          {modifyingProduct ? "Editar Producto" : "Añadir Producto"}
+        </Card.Title>
         <hr />
 
         <Form onSubmit={handleSubmit(customHandleSubmit)}>
@@ -195,7 +259,7 @@ const FormAdmin = () => {
 
           <div className="text-end">
             <Button variant="danger" type="submit">
-              Guardar
+              {modifyingProduct ? "Editar" : "Añadir"}
             </Button>
           </div>
         </Form>
