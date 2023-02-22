@@ -35,8 +35,8 @@ export const AboutUs = () => {
         <Integrante nombre="Luis Aramayo" imagenURL="/img/imgAboutUs/Luis.jpg"/>
         <Integrante nombre="Leonardo Zurita" imagenURL="/img/imgAboutUs/leo.jpg"/>
         <Integrante nombre="Jenny González" imagenURL="/img/imgAboutUs/Jenny.png"/>
-        <Integrante nombre="Jenny González" imagenURL="/img/imgAboutUs/Fabi.png"/>
-        <Integrante nombre="Jenny González" imagenURL="/img/imgAboutUs/Felix.jpg"/>
+        <Integrante nombre="Fabiana Ibañez" imagenURL="/img/imgAboutUs/Fabi.png"/>
+        <Integrante nombre="Felix Diaz" imagenURL="/img/imgAboutUs/Felix.jpg"/>
       </div>
     </Container>
   );
