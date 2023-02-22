@@ -5,7 +5,7 @@ import "./producto.css"
 
 const Producto = (props) => {
 
-    const {category, name, price, image, description}= props;
+    const {name, price, image, description}= props;
 
   return (
     <Card className='' id=''>
