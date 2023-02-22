@@ -1,0 +1,9 @@
+.img-prod{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .cardProd{
+    width: 50vw;
+  }
