@@ -41,8 +41,9 @@ const Menu = () => {
 
     useEffect(()=>{
         const productsFetch= async ()=>{
-            const data = await axios.get(`${baseUrl}${productsGetUrl}`);
+            const data = await axios.get(`${baseUrl}/products`);
             setProducts(data.data);
+            console.log(data.data)
         };
         productsFetch();
     }, []);

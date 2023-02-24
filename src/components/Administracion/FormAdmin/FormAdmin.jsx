@@ -25,10 +25,10 @@ const FormAdmin = (props) => {
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await axios.get(
-        `${baseUrl}${productGetUrl}/${modifyingProduct}`
+        `${baseUrl}/products/${modifyingProduct}`
       );
       setValue("formAdmin_nombre", response.data.name);
-      setValue("formAdmin_categoria", response.data.category);
+      setValue("formAdmin_categoria", response.data.categoria);
       setValue("formAdmin_urlimagen", response.data.image);
       setValue("formAdmin_precio", response.data.price);
       setValue("formAdmin_descripcion", response.data.description);
@@ -43,7 +43,7 @@ const FormAdmin = (props) => {
     if (modifyingProduct) {
       //Caso editar
       const response = await axios.put(
-        `${baseUrl}${productPutUrl}/${modifyingProduct}`,
+        `${baseUrl}/product/${modifyingProduct}`,
         {
           name: data.formAdmin_nombre,
           category: data.formAdmin_categoria,
@@ -77,7 +77,7 @@ const FormAdmin = (props) => {
       }
     } else {
       //Caso añadir
-      const response = await axios.post(`${baseUrl}${productPostUrl}`, {
+      const response = await axios.post(`${baseUrl}/product`, {
         name: data.formAdmin_nombre,
         category: data.formAdmin_categoria,
         image: data.formAdmin_urlimagen,
