@@ -1,16 +1,11 @@
 import { Button, Card, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import axios from "axios";
+import axios from "../../../api/axios";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 
 import "./formAdmin.css";
-
-const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
-const productPostUrl = process.env.REACT_APP_PRODUCT_POST_URL;
-const productGetUrl = process.env.REACT_APP_PRODUCT_GET_URL;
-const productPutUrl = process.env.REACT_APP_PRODUCT_PUT_URL;
 
 const FormAdmin = (props) => {
   const { modifyingProduct, setModifyingProduct } = props;
@@ -25,7 +20,7 @@ const FormAdmin = (props) => {
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await axios.get(
-        `${baseUrl}/products/${modifyingProduct}`
+        `/products/${modifyingProduct}`
       );
       setValue("formAdmin_nombre", response.data.name);
       setValue("formAdmin_categoria", response.data.categoria);
@@ -43,14 +38,14 @@ const FormAdmin = (props) => {
     if (modifyingProduct) {
       //Caso editar
       const response = await axios.put(
-        `${baseUrl}/product/${modifyingProduct}`,
+        `/product/${modifyingProduct}`,
         {
-          name: data.formAdmin_nombre,
-          category: data.formAdmin_categoria,
-          image: data.formAdmin_urlimagen,
-          price: data.formAdmin_precio,
-          description: data.formAdmin_descripcion,
-          isActive: data.formAdmin_disponible,
+          name: data.name,
+          categoria: data.categoria,
+          image: data.image,
+          price: data.price,
+          description: data.description,
+          isActive: data.isActive,
         }
       );
       if (response.status === 200) {
@@ -77,7 +72,7 @@ const FormAdmin = (props) => {
       }
     } else {
       //Caso añadir
-      const response = await axios.post(`${baseUrl}/product`, {
+      const response = await axios.post(`/product`, {
         name: data.formAdmin_nombre,
         category: data.formAdmin_categoria,
         image: data.formAdmin_urlimagen,
@@ -86,7 +81,7 @@ const FormAdmin = (props) => {
         isActive: data.formAdmin_disponible,
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         Swal.fire({
           title: "Operacion exitosa",
           text: "Producto agregado correctamente",
