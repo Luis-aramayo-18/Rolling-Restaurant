@@ -10,6 +10,7 @@ import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import AuthRoute from "./AuthRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const RoutesApp = () => {
   return (
@@ -20,10 +21,8 @@ const RoutesApp = () => {
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/contacto" element={<Contact />} />
 
-        <Route>
         <Route path="/login" element={<Login />} />
-        </Route>
-        
+
         <Route path="/registro" element={<FormCliente />}/>
         <Route path='/menu' element={<Menu/>}/>
         <Route path="/administracion" element={<Administracion />} />

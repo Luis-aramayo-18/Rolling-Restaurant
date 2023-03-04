@@ -4,10 +4,12 @@ import { Alert, Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import jwt_decode from "jwt-decode"
+
 
 const Login = () => {
 
-  const {register, handleSubmit: handleRHF}= useForm();
+  const {register, watch, formState:{errors}, handleSubmit: handleRHF}= useForm();
 
   const navigate = useNavigate();
 
@@ -39,14 +41,34 @@ const Login = () => {
 
         sessionStorage.setItem('token', token);
 
-        Swal.fire({
-          title: 'Bienvenido',
-          timer: 2000,
-          showCancelButton: false,
-          showConfirmButton: false,
-        }).then(() => {
-          navigate('/menu');
-        });
+        const dataDecoded = jwt_decode(token);
+
+        let adminLogueado = dataDecoded.isAdmin;
+        console.log(adminLogueado)
+
+        if(adminLogueado === true){
+
+          Swal.fire({
+            title: 'Bienvenido admin',
+            timer: 2000,
+            showCancelButton: false,
+            showConfirmButton: false,
+          }).then(()=>{
+            navigate("/administracion")
+          })
+
+        } else{
+
+          Swal.fire({
+            title: 'Bienvenido',
+            timer: 2000,
+            showCancelButton: false,
+            showConfirmButton: false,
+          }).then(()=>{
+            navigate("/menu")
+          })
+
+        }
       }
     } catch (error) {
       setIsError(true);
@@ -104,22 +126,25 @@ const Login = () => {
             <div>
             <Form onSubmit={handleRHF(handleSubmit)}>
               {isError && <Alert variant="danger">{errorMessage || "revise los campos"}</Alert>}
-            <Form.Group>
-        <Form.Label>Usuario</Form.Label>
-        <Form.Control
-          type='email'
-          {...register('email', { required: true, maxLength: 100 })}
-        />
-      </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Contraseña</Form.Label>
-            <Form.Control type="password"  {...register('password', { required: true, maxLength: 50 })} 
-            />
-          </Form.Group>
+        <Form.Group>
+          <Form.Label>Usuario</Form.Label>
+          <Form.Control
+            type='email'
+            {...register('email', { required: true, pattern:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, maxLength:100, minLength:5 })}/>
+            {errors.email && <span>Por favor ingrese un Email valido, no puede ser menor a 5 caracteres</span>}
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control 
+            type="password"
+            {...register('password', { required: true, pattern:/(?=.*[a-z]){3}(?=.*[0-9]){3}/, minLength:8 })}/>
+            {errors.password && <span>Por favor ingrese una contraseña que contenga al menos 2 numero y 2 letras</span>}
+        </Form.Group>
       
           <div className='text-center mb-3'>
-            <Button className='mt-2' variant="secondary" type="submit">
+            <Button className='mt-2' variant="primary" type="submit">
               Ingresar
             </Button>
           </div>
