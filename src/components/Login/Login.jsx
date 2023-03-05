@@ -52,7 +52,7 @@ const Login = () => {
             showCancelButton: false,
             showConfirmButton: false,
           }).then(()=>{
-            navigate("/menu")
+            navigate("/mesa")
           })
 
         }
