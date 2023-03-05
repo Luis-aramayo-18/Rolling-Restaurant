@@ -25,7 +25,7 @@ const TableRowAdmin = (props) => {
       cancelButtonText: "Cancelar",
     }).then(async (response) => {
       if (response.isConfirmed) {
-        const response = await axios.delete(
+        const response = await axios().delete(
           `/product/${id}`
         ); //Cambiar products por product para que coincida con la ruta del backend.
 

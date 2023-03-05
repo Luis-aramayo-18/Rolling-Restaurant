@@ -10,7 +10,7 @@ const TableAdmin = (props) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const data = await axios.get(`/products`);
+      const data = await axios().get(`/products`);
       setItems(data.data);
     };
     fetchItems();
