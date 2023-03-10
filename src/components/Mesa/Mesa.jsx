@@ -12,7 +12,6 @@ const Mesa = () => {
     const navigate = useNavigate()
 
     const handleSubmit = (data)=> {
-        console.log(data)
 
         const numMesa = data.numMesa
         localStorage.setItem("mesa",numMesa)
@@ -55,7 +54,7 @@ const Mesa = () => {
         <p className='mt-1 fs-8 text-danger'>{errors.mesa?.message}</p>
         </Form.Group>
 
-        <div className='text-end mt-2'>
+        <div className='text-end mt-3'>
         <Button className="btn-sm" variant="primary" type="submit">Continuar</Button>
         </div>
         </Form>

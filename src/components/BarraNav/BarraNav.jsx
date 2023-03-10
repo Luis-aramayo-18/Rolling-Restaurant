@@ -12,6 +12,16 @@ const BarraNav = () => {
     color: "#fff",
   };
 
+  const token = sessionStorage.getItem("token")
+
+  const handleClick =()=>{
+    if(token){
+    sessionStorage.clear()
+    window.location.reload()
+    }
+    return
+  }
+
   return (
     <Navbar fixed="top" bg="dark" expand="lg" variant="dark">
       <Container>
@@ -56,8 +66,8 @@ const BarraNav = () => {
           </Nav>
           <div className="ms-3 text-center py-2">
             <NavLink to="/login">
-              <button type="button" className="bg-danger rounded">
-                Ingresar
+              <button onClick={handleClick} type="button" className="bg-danger rounded">
+                {token ? `salir` : `ingresar`}
               </button>
             </NavLink>
           </div>

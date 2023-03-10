@@ -1,10 +1,12 @@
 import axios from '../../api/axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
 import Producto from '../Producto/Producto';
 
 function MyVerticallyCenteredModal(props) {
+
+    const mesa = localStorage.getItem("mesa")
+
     return (
       <Modal
         {...props}
@@ -14,7 +16,7 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title className='text-dark' id="contained-modal-title-vcenter">
-          Mesa: 
+          Mesa: {mesa}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -48,7 +50,6 @@ const Menu = () => {
   return (
     <Container className='vh-100'>
         <div className='text-end'>
-        <Button variant="danger" className='pill mx-2'><i class="fa-regular fa-user"></i></Button>
         <button onClick={() => setModalShow(true)} type="button" class="mx-2 btn btn-primary"> Mi pedido 
         <i class=" ms-2 fa-solid fa-bell-concierge"></i>
         </button>
@@ -56,7 +57,6 @@ const Menu = () => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-        <NavLink to="/login"><button variant="danger" type='button' className='bg-danger pill mx-2 rounded'>Cerrar sesión</button></NavLink>
         </div>
         <hr />
         <h1 className='text-center'>Nuestra carta</h1>

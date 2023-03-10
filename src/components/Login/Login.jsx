@@ -64,12 +64,12 @@ const Login = () => {
     }
     
   return (
-    <div className='formLogin vh-100 container mb-3'>
+    <div className='formLogin container'>
       
-      <div className='p-5 bg-dark rounded'>
+      
             <h1 className='text-center'>Bienvenido!</h1>
-            <div>
-            <Form onSubmit={handleRHF(handleSubmit)}>
+            <div className='row d-flex justify-content-center align-items-center'>
+            <Form className='w-50' onSubmit={handleRHF(handleSubmit)}>
               {isError && <Alert variant="danger">{errorMessage || "revise los campos"}</Alert>}
 
         <Form.Group>
@@ -80,7 +80,7 @@ const Login = () => {
             {...register("email", {
               required: {
                 value: true,
-                message: "Error: El Email no puede estar vacío",
+                message: "Error: Email no puede estar vacío",
               },
 
               minLength: {
@@ -124,23 +124,22 @@ const Login = () => {
 
               pattern: {
                 value: /(?=.*[a-z]){2}(?=.*[0-9]){2}/,
-                message: "Error: Ingrese una contraseña valida",
+                message: "Error: debe contener por lo menos 2 letras y 2 numeros",
               },
             })}/>
             <p className='mt-1 fs-8 text-danger'>{errors.password?.message}</p>
         </Form.Group>
       
-          <div className='text-center mb-3'>
-            <Button className='mt-2' variant="primary" type="submit" >
+          <div className='text-center'>
+            <Button className='m-2' variant="primary" type="submit" >
               Ingresar
             </Button>
+            <p className="text-start p-3">Si olvidaste tu contraseña hace click <Link className='text-light' to="/*">aqui</Link> o <Link className='text-light' to="/registro">Registrate</Link></p>
           </div>
-      
+         
         </Form>
-            </div>
-        <p>Si olvidaste tu contraseña hace click <Link className='text-light' to="/*">aqui</Link> o <Link className='text-light' to="/registro">Registrate</Link></p>
+        </div>
       </div>
-    </div>
         
     
   )

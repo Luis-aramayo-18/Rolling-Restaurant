@@ -13,7 +13,9 @@ import NotFound from "../pages/NotFound";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
 
+
 const RoutesApp = () => {
+
   return (
     <BrowserRouter>
       <BarraNav />
@@ -22,12 +24,17 @@ const RoutesApp = () => {
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/contacto" element={<Contact />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route path='/' element={<AuthRoute />}>
+         <Route path="/login" element={<Login/>}/>
+         <Route path="/registro" element={<FormCliente />}/>
+        </Route>
 
-        <Route path="/registro" element={<FormCliente />}/>
+        <Route path="/" element={<PrivateRoute />}>
         <Route path='/mesa' element={<Mesa/>}/>
         <Route path='/menu' element={<Menu/>}/>
-        <Route path="/administracion" element={<Administracion />} />
+        <Route path="/administracion" element={<Administracion />}/>
+        </Route>
+
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
