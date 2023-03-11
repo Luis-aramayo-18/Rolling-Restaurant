@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../../api/axios";
 import { Table } from "react-bootstrap";
 import TableRowAdmin from "./TableRowAdmin";
 import "./tableRowAdmin.css";
-
-const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
-const productsGetUrl = process.env.REACT_APP_PRODUCTS_GET_URL;
 
 const TableAdmin = (props) => {
   const { setModifyingProduct } = props;
@@ -13,7 +10,7 @@ const TableAdmin = (props) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const data = await axios.get(`${baseUrl}${productsGetUrl}`);
+      const data = await axios().get(`/products`);
       setItems(data.data);
     };
     fetchItems();
