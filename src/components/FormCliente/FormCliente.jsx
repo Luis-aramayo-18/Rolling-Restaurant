@@ -1,28 +1,31 @@
-import axios from 'axios';
+import axios from '../../api/axios';
 import React from 'react'
 import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
-
-const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
-const userPostUrl = process.env.REACT_APP_POST_USER_URL;
 
 const FormCliente = () => {
+
+    const navigate = useNavigate();
 
     const {register, handleSubmit,formState: { errors }}= useForm();
 
     const costumHandleSubmit = async (data) =>{
 
-        const res= await axios.post(`${baseUrl}${userPostUrl}`, {
-          name: data.name,
-          lastName: data.lastName,
-          username: data.username,
-          password: data.password,
-          isActive: true
+        const res= await axios().post(`/user`, {
+          name: data.nombre,
+          lastName: data.apellido,
+          email: data.email,
+          password: data.contraseña,
         });
 
-        if (res.status === 201) {
+        if (res.status === 200) {
+
+          const token = res.data.token;
+          sessionStorage.setItem('token', token);
+
           Swal.fire({
             title: 'Operacion exitosa',
             text: 'Usuario creado correctamente',
@@ -31,7 +34,8 @@ const FormCliente = () => {
             showCancelButton: false,
             showConfirmButton: false,
           }).then(() => {
-            window.location.reload();
+            navigate("/mesa");
+            window.location.reload
           });
         } else {
           Swal.fire({
@@ -125,7 +129,7 @@ const FormCliente = () => {
                   message: "Error: ingrese un email valido",
                 },
               })} type="email" placeholder="juancito@gmail.com" required/>
-              <p className='mt-1 fs-8 text-danger'>{errors.email?.message}</p>
+              <p className='mt-1 text-danger'>{errors.email?.message}</p>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="password">
@@ -151,8 +155,8 @@ const FormCliente = () => {
                   message: "Error: debe contener al menos 2 caracteres numericos y 2 caracteres alfabeticos",
                 },
               })} type="password" placeholder="******" required/>
-              <p className='mt-1 fs-8 text-danger'>{errors.contraseña?.message}</p>
-        <Form.Text className="text-muted">
+              <p className='mt-1 text-start p-2 fs-10 text-danger'>{errors.contraseña?.message}</p>
+        <Form.Text className="text-muted text-start">
          Debe contener al menos 2 caracteres numéricos, 2 alfabéticos y en total tiene que tener un mínimo de 6 caracteres.
         </Form.Text>
       </Form.Group>
