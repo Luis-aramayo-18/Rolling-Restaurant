@@ -42,7 +42,7 @@ const Login = () => {
             showConfirmButton: false,
           }).then(()=>{
             navigate("/administracion")
-            window.location.reload
+            window.location.reload()
           })
 
         } else{
@@ -54,7 +54,7 @@ const Login = () => {
             showConfirmButton: false,
           }).then(()=>{
             navigate("/mesa")
-            window.location.reload
+            window.location.reload()
           })
 
         }

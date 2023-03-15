@@ -35,7 +35,7 @@ const FormCliente = () => {
             showConfirmButton: false,
           }).then(() => {
             navigate("/mesa");
-            window.location.reload
+            window.location.reload()
           });
         } else {
           Swal.fire({
