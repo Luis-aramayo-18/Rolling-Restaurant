@@ -161,7 +161,7 @@ const FormCliente = () => {
         </Form.Text>
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button variant="danger" type="submit">
         Guardar
       </Button>
 

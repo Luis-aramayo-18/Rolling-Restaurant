@@ -66,19 +66,18 @@ const Login = () => {
     }
     
   return (
-    <div className='formLogin container'>
-      
-      
-            <h1 className='text-center'>Bienvenido!</h1>
+    <div className='formLogin vh-100 container'>
+      <div className='p-4 bg-light rounded'>
+            <h1 className='text-center text-dark mb-3'>Bienvenido!</h1>
             <div className='row d-flex justify-content-center align-items-center'>
-            <Form className='w-50' onSubmit={handleRHF(handleSubmit)}>
+            <Form className='w-50 text-center' onSubmit={handleRHF(handleSubmit)}>
               {isError && <Alert variant="danger">{errorMessage || "revise los campos"}</Alert>}
 
         <Form.Group>
-          <Form.Label>Usuario</Form.Label>
+          <Form.Label className='text-dark'>Usuario</Form.Label>
           <Form.Control
             type='email'
-            placeholder='ingrese su email'
+            placeholder='Ingrese su email'
             {...register("email", {
               required: {
                 value: true,
@@ -104,10 +103,10 @@ const Login = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Contraseña</Form.Label>
+          <Form.Label className='text-dark'>Contraseña</Form.Label>
           <Form.Control 
             type="password"
-            placeholder='ingrese su contraseña'
+            placeholder='Ingrese su contraseña'
             {...register("password", {
               required: {
                 value: true,
@@ -133,13 +132,14 @@ const Login = () => {
         </Form.Group>
       
           <div className='text-center'>
-            <Button className='m-2' variant="primary" type="submit" >
+            <Button className='m-2' variant="danger" type="submit" >
               Ingresar
             </Button>
-            <p className="text-start p-3">Si olvidaste tu contraseña hace click <Link className='text-light' to="/*">aqui</Link> o <Link className='text-light' to="/registro">Registrate</Link></p>
+            <p className="text-start p-3 text-dark">Si olvidaste tu contraseña hace click <Link className='' to="/*">aqui</Link> o <Link className='' to="/registro">Registrate</Link></p>
           </div>
          
         </Form>
+        </div>
         </div>
       </div>
         
