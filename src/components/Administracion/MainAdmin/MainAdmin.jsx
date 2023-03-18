@@ -7,7 +7,7 @@ import "./mainAdmin.css";
 const MainAdmin = () => {
   const [modifyingProduct, setModifyingProduct] = useState(null);
   return (
-    <Container className="my-5 mainAdmin">
+    <Container className="mainAdmin">
       <h1 className="text-center">Panel de Administración</h1>
       <hr />
       <FormAdmin modifyingProduct={modifyingProduct} setModifyingProduct={setModifyingProduct} />

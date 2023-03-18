@@ -5,7 +5,14 @@ import "./producto.css"
 
 const Producto = (props) => {
 
-    const {name, price, image, description}= props;
+    const {name, price, image, description}= props.elemento;
+
+    const addProduct = () => {
+      props.setOrdenProducts([
+        ...props.ordenProducts,
+        props.elemento
+      ]);
+    }
 
     const addToCart = ()=>{
 
@@ -27,13 +34,13 @@ const Producto = (props) => {
         </Card.Text>
         </div>
         <div className='d-flex'>
-        <img className='img-prod px-3' src={image} alt="" />
-        <Card.Text className='text-dark'>
+        <img className='img-prod' src={image} alt="" />
+        <Card.Text className='text-dark ms-3'>
           {description}
         </Card.Text>
         </div> 
-        <div onClick={addToCart} className='text-end mt-2'>
-        <Button variant="danger">Agregar a pedido</Button>
+        <div className='text-end mt-2'>
+        <Button variant="danger" onClick={addProduct}>Agregar a pedido</Button>
         </div>
       </Card.Body>
     </Card>
