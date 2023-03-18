@@ -1,74 +1,170 @@
+import axios from '../../api/axios';
 import React from 'react'
 import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
-import "./formCliente.css"
 
-const FormCliente = (props) => {
-    
-  
-    const {clientes, changeClientsList}= props;
+const FormCliente = () => {
 
-    const {register, handleSubmit}= useForm();
+    const navigate = useNavigate();
 
-    const costumHandleSubmit = (data) =>{
-        // console.log(data);
-        // console.log(clientes)
+    const {register, handleSubmit,formState: { errors }}= useForm();
 
-        const newClient= {
-          nombre: data.nombre,
-          apellido: data.apellido,
-          email: data.email
+    const costumHandleSubmit = async (data) =>{
+
+        const res= await axios().post(`/user`, {
+          name: data.nombre,
+          lastName: data.apellido,
+          email: data.email,
+          password: data.contraseña,
+        });
+
+        if (res.status === 200) {
+
+          const token = res.data.token;
+          sessionStorage.setItem('token', token);
+
+          Swal.fire({
+            title: 'Operacion exitosa',
+            text: 'Usuario creado correctamente',
+            icon: 'success',
+            timer: 2000,
+            showCancelButton: false,
+            showConfirmButton: false,
+          }).then(() => {
+            navigate("/mesa");
+            window.location.reload()
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: `Ocurrio un error al guardar el elemento, que es: ${res.statusText} o Revise los campos`,
+            icon: 'error',
+            timer: 2000,
+            showCancelButton: false,
+            showConfirmButton: false,
+          });
         }
-
-        changeClientsList([...clientes,newClient]);
-        
-      }
-  //     let templateParams = {
-  //       from_name: 'DevsFood',
-  //       username: nombre,
-  //       message: "Deseamos que tengas una linda experiencia",
-  //       destinatario: email
-  //   };
-   
-  // const enviarMail=()=>{
-
-  //   emailjs.send('service_jtx466k', 'template_7nlfgvf', templateParams)
-  //       .then(function(response) {
-  //          console.log('SUCCESS!', response.status, response.text);
-  //       }, function(error) {
-  //          console.log('FAILED...', error);
-  //       });
-  // }
-
+      } 
+  
   return (
     <Container className='pb-5' id='form-cliente'>
-      <h3 className="text-light text-center">Registrate para acceder a nuestro menú 🍔🍟🍺</h3>
+      <h3 className="text-light text-center mb-3">Registrate para acceder a nuestro menú 🍔🍟🍺</h3>
         <Form onSubmit={handleSubmit(costumHandleSubmit)} className='bg-light p-5 text-center rounded'>
-        <Form.Group className="mb-3" controlId="name">
+
+      <Form.Group className="mb-3" controlId="name">
         <Form.Label className='text-dark'>Nombre</Form.Label>
-        <Form.Control {...register("nombre", {maxLength: 20, pattern:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/})} type="text" placeholder="Juan" required/>
+        <Form.Control {...register("nombre", {
+                required: {
+                  value: true,
+                  message: "Error: Por favor complete este campo",
+                },
+
+                minLength: {
+                  value: 2,
+                  message: "Error: Nombre demasiado corto (2 caracteres minimo)",
+                },
+
+                maxLength: {
+                  value: 20,
+                  message: "Error: Nombre demasiado largo (20 caracteres maximo)",
+                },
+
+                pattern: {
+                  value: /^[A-Za-z]+.*[A-Za-z]+$/,
+                  message: "Error: Ingrese un nombre valido",
+                },
+              })} type="text" placeholder="Juan" required/>
+              <p className='mt-1 fs-8 text-danger'>{errors.nombre?.message}</p>
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="lastName">
         <Form.Label className='text-dark'>Apellido</Form.Label>
-        <Form.Control {...register("apellido", {maxLength: 30, pattern:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/})} type="text" placeholder="Perez" required/>
+        <Form.Control {...register("apellido", {
+                required: {
+                  value: true,
+                  message: "Error: Por favor complete este campo",
+                },
+
+                minLength: {
+                  value: 2,
+                  message: "Error: Nombre demasiado corto (2 caracteres minimo)",
+                },
+
+                maxLength: {
+                  value: 20,
+                  message: "Error: Nombre demasiado largo (20 caracteres maximo)",
+                },
+
+                pattern: {
+                  value: /^[A-Za-z]+.*[A-Za-z]+$/,
+                  message: "Error: Ingrese un apellido valido",
+                },
+              })} type="text" placeholder="Perez" required/>
+              <p className='mt-1 fs-8 text-danger'>{errors.apellido?.message}</p>
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="email">
         <Form.Label className='text-dark'>Email</Form.Label>
-        <Form.Control {...register("email", {pattern: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/})} type="email" placeholder="juancito@gmail.com" required/>
-        
+        <Form.Control {...register("email", {
+                required: {
+                  value: true,
+                  message: "Error: por favor complete este campo",
+                },
+
+                minLength: {
+                  value: 5,
+                  message: "Error: email demasiado corto (5 caracteres minimo)",
+                },
+
+                maxLength: {
+                  value: 50,
+                  message: "Error: nombre demasiado largo (50 caracteres maximo)",
+                },
+
+                pattern: {
+                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                  message: "Error: ingrese un email valido",
+                },
+              })} type="email" placeholder="juancito@gmail.com" required/>
+              <p className='mt-1 text-danger'>{errors.email?.message}</p>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="password">
         <Form.Label className='text-dark'>Contraseña</Form.Label>
-        <Form.Control {...register("password")} type="password" placeholder="******" required/>
-        <Form.Text className="text-muted">
+        <Form.Control {...register("contraseña", {
+                required: {
+                  value: true,
+                  message: "Error: por favor complete este campo",
+                },
+
+                minLength: {
+                  value: 6,
+                  message: "Error: contraseña demasiada corta (6 caracteres minimo)",
+                },
+
+                maxLength: {
+                  value: 50,
+                  message: "Error: contraseña demasiada larga (50 caracteres maximo)",
+                },
+
+                pattern: {
+                  value: /(?=.*[a-z]){2}(?=.*[0-9]){2}/,
+                  message: "Error: debe contener al menos 2 caracteres numericos y 2 caracteres alfabeticos",
+                },
+              })} type="password" placeholder="******" required/>
+              <p className='mt-1 text-start p-2 fs-10 text-danger'>{errors.contraseña?.message}</p>
+        <Form.Text className="text-muted text-start">
          Debe contener al menos 2 caracteres numéricos, 2 alfabéticos y en total tiene que tener un mínimo de 6 caracteres.
         </Form.Text>
       </Form.Group>
+
       <Button variant="danger" type="submit">
         Guardar
       </Button>
+
     </Form>
     </Container>
     

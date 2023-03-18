@@ -8,7 +8,7 @@ import img3 from "../assets/imagen3.jpg"
 const Home = () => {
   return (
     <>
-       <Container>
+        <Container>
         <div className='text-center bg-danger rounded-top p-2'>
           <h4>CONOCÉ NUESTRO MENÚ</h4>
           <hr />

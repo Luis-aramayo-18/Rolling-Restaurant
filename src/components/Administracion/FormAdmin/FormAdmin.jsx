@@ -1,15 +1,11 @@
 import { Button, Card, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import axios from "../../../Api/axios";
+import axios from "../../../api/axios";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 
 import "./formAdmin.css";
-
-const productPostUrl = process.env.REACT_APP_PRODUCT_POST_URL;
-const productGetUrl = process.env.REACT_APP_PRODUCT_GET_URL;
-const productPutUrl = process.env.REACT_APP_PRODUCT_PUT_URL;
 
 const FormAdmin = (props) => {
   const { modifyingProduct, setModifyingProduct } = props;
@@ -23,33 +19,34 @@ const FormAdmin = (props) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(
-        `/products`
-      );
-      setValue("formAdmin_nombre", response.data.name);
-      setValue("formAdmin_categoria", response.data.category);
-      setValue("formAdmin_urlimagen", response.data.image);
-      setValue("formAdmin_precio", response.data.price);
-      setValue("formAdmin_descripcion", response.data.description);
-      setValue("formAdmin_disponible", response.data.isActive);
+      const response = await axios().get(`/products`);
+
+      const product = response.data
+      const productToModify = product.find(
+        (element)=>element.id===modifyingProduct)
+
+      setValue("formAdmin_nombre", productToModify.name);
+      setValue("formAdmin_categoria", productToModify.categoria);
+      setValue("formAdmin_urlimagen", productToModify.image);
+      setValue("formAdmin_precio", productToModify.price);
+      setValue("formAdmin_descripcion", productToModify.description);
     };
     if (modifyingProduct) {
       fetchProduct();
     }
   }, [modifyingProduct, setValue]);
 
-  const customHandleSubmit = async (data) => {
+  const customHandleSubmit = async (data) => { 
     if (modifyingProduct) {
       //Caso editar
-      const response = await axios.put(
-        `${productPutUrl}/${modifyingProduct}`,
+      const response = await axios().put(
+        `/product/${modifyingProduct}`,
         {
-          name: data.formAdmin_nombre,
-          category: data.formAdmin_categoria,
-          image: data.formAdmin_urlimagen,
-          price: data.formAdmin_precio,
-          description: data.formAdmin_descripcion,
-          isActive: data.formAdmin_disponible,
+          name:data.formAdmin_nombre,
+          categoria:data.formAdmin_categoria,
+          image:data.formAdmin_urlimagen,
+          price:data.formAdmin_precio,
+          description:data.formAdmin_descripcion
         }
       );
       if (response.status === 200) {
@@ -76,16 +73,15 @@ const FormAdmin = (props) => {
       }
     } else {
       //Caso añadir
-      const response = await axios.post(`${productPostUrl}`, {
+      const response = await axios().post(`/product`, {
         name: data.formAdmin_nombre,
         category: data.formAdmin_categoria,
         image: data.formAdmin_urlimagen,
         price: data.formAdmin_precio,
-        description: data.formAdmin_descripcion,
-        isActive: data.formAdmin_disponible,
+        description: data.formAdmin_descripcion
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         Swal.fire({
           title: "Operacion exitosa",
           text: "Producto agregado correctamente",
@@ -113,11 +109,12 @@ const FormAdmin = (props) => {
     <Card className="formAdminCard">
       <Card.Body>
         <Card.Title className="text-dark">
-          {modifyingProduct ? "Editar Producto" : "Añadir Producto"}
+           {modifyingProduct ? "Editar Producto" : "Añadir Producto"}
         </Card.Title>
         <hr />
 
         <Form onSubmit={handleSubmit(customHandleSubmit)}>
+
           <Form.Group className="mb-3" controlId="formAdminNombre">
             <Form.Label className="text-dark">Nombre del producto</Form.Label>
             <Form.Control
@@ -145,14 +142,7 @@ const FormAdmin = (props) => {
               type="text"
               placeholder="Ingrese nombre del producto"
             />
-
-            <ErrorMessage
-              errors={errors}
-              name="formAdmin_nombre"
-              render={({ message }) => (
-                <p className="text-danger text-left p-1">{message}</p>
-              )}
-            />
+            <p className='mt-1 fs-8 text-danger'>{errors.formAdmin_nombre?.message}</p> 
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formAdminCategoria">
@@ -161,8 +151,8 @@ const FormAdmin = (props) => {
               {...register("formAdmin_categoria")}
               aria-label="Elija una categoría..."
             >
-              <option value="Comidas">Comidas</option>
-              <option value="Bebidas">Bebidas</option>
+              <option className="text-dark" value="Comidas">Comidas</option>
+              <option className="text-dark" value="Bebidas">Bebidas</option>
             </Form.Select>
           </Form.Group>
 
@@ -183,7 +173,6 @@ const FormAdmin = (props) => {
               type="url"
               placeholder="Ingrese URL de la Imagen"
             />
-
             <ErrorMessage
               errors={errors}
               name="formAdmin_urlimagen"
@@ -211,7 +200,6 @@ const FormAdmin = (props) => {
               step="0.01"
               placeholder="Ingrese precio del producto"
             />
-
             <ErrorMessage
               errors={errors}
               name="formAdmin_precio"
@@ -243,17 +231,6 @@ const FormAdmin = (props) => {
                 <p className="text-danger text-left p-1">{message}</p>
               )}
             />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formAdminDisponible">
-            <Form.Label className="text-dark">¿Está disponible?</Form.Label>
-            <Form.Select
-              {...register("formAdmin_disponible")}
-              aria-label="Elija una opción..."
-            >
-              <option value="si">Si</option>
-              <option value="no">No</option>
-            </Form.Select>
           </Form.Group>
 
           <div className="text-end">

@@ -1,9 +1,6 @@
-import axios from "axios";
+import axios from "../../../api/axios";
 import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
-
-const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
-const productDeleteUrl = process.env.REACT_APP_PRODUCT_DELETE_URL;
 
 const TableRowAdmin = (props) => {
   const {
@@ -28,8 +25,8 @@ const TableRowAdmin = (props) => {
       cancelButtonText: "Cancelar",
     }).then(async (response) => {
       if (response.isConfirmed) {
-        const response = await axios.delete(
-          `${baseUrl}${productDeleteUrl}/${id}`
+        const response = await axios().delete(
+          `/product/${id}`
         ); //Cambiar products por product para que coincida con la ruta del backend.
 
         if (response.status === 200) {

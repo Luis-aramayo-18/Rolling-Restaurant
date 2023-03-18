@@ -1,12 +1,30 @@
+body {
+  background-image: url(../public/img/fondoMenu_3.png);
+  padding-top: 5rem;
+  color: white;
+}
+
+
+.integrantes {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 100%;
+  object-position: top;
+  margin-top: 3rem;
+}
+
+
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 *{
   font-family: 'Oswald', sans-serif;
   font-size:x-large;
   color: white;
-}
-body{
-    background-image: url(../public/img/fondoMenu_3.png);
-    padding-top:7rem;
 }
 
 #img-pedido{
