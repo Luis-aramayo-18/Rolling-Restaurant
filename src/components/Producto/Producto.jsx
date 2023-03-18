@@ -7,6 +7,16 @@ const Producto = (props) => {
 
     const {name, price, image, description}= props;
 
+    const addToCart = ()=>{
+
+      const productoLS = {
+        nombre:name,
+        precio:price
+      }
+
+      console.log(productoLS)
+    }
+
   return (
     <Card className='' id=''>
       <Card.Body className=''>
@@ -22,7 +32,7 @@ const Producto = (props) => {
           {description}
         </Card.Text>
         </div> 
-        <div className='text-end mt-2'>
+        <div onClick={addToCart} className='text-end mt-2'>
         <Button variant="danger">Agregar a pedido</Button>
         </div>
       </Card.Body>
