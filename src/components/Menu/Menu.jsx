@@ -1,5 +1,5 @@
 import axios from '../../api/axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import Producto from '../Producto/Producto';
 import Swal from 'sweetalert2';
@@ -17,9 +17,8 @@ function MyVerticallyCenteredModal(props) {
       return total;
     }
 
-    const deleteProductFromOrder = (productName) => {
-      console.log('productName', productName);
-      const newOrderProductsList = props.ordenProducts.filter((item) => item.name!==productName);
+    const deleteProductFromOrder = (product) => {
+      const newOrderProductsList = props.ordenProducts.filter((item) => item!==product);
       props.setOrdenProducts([...newOrderProductsList]);
     }
 
@@ -73,7 +72,8 @@ function MyVerticallyCenteredModal(props) {
         {props.ordenProducts.map((product) => (
             <ul className='d-flex justify-content-between'>
               <li className='text-dark'>{product.name}</li>
-              <Button variant='danger'className='mb-2' onClick={() => deleteProductFromOrder(product.name)}>Eliminar</Button>
+              <p className='text-dark'>{product.price}</p>
+              <Button variant='danger'className='mb-2' onClick={() => deleteProductFromOrder(product)}>Eliminar</Button>
             </ul>
           ))}
         </Modal.Body>
@@ -113,7 +113,7 @@ const Menu = () => {
   return (
     <Container className=''>
         <div className='text-end'>
-        <button onClick={() => setModalShow(true)} type="button" class="mx-2 btn btn-primary"> Mi pedido 
+        <button onClick={() => setModalShow(true)} type="button" className="btn btn-primary"> Mi pedido {ordenProducts.length}
         <i class=" ms-2 fa-solid fa-bell-concierge"></i>
         </button>
         <MyVerticallyCenteredModal
@@ -126,7 +126,7 @@ const Menu = () => {
       />
         </div>
         <hr />
-        <h1 className='text-center'>Nuestra carta</h1>
+        <h1 className='text-center mb-4'>Nuestra carta</h1>
         <Container className='pb-5'>
         <Row className='g-3'>
             {products.map((elemento)=>{
