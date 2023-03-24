@@ -113,7 +113,7 @@ const Menu = () => {
   return (
     <Container className=''>
         <div className='text-end'>
-        <button onClick={() => setModalShow(true)} type="button" className="btn btn-primary"> Mi pedido {ordenProducts.length}
+        <button onClick={() => setModalShow(true)} type="button" className="btn btn-warning"> Mi pedido {ordenProducts.length}
         <i class=" ms-2 fa-solid fa-bell-concierge"></i>
         </button>
         <MyVerticallyCenteredModal
@@ -131,7 +131,7 @@ const Menu = () => {
         <Row className='g-3'>
             {products.map((elemento)=>{
                 return(
-                    <Col key={elemento.id} xs={12} md={6} lg={6} >
+                    <Col key={elemento.id} xs={12} md={6} lg={4} >
                         <Producto 
                           {...elemento}
                           setOrdenProducts={setOrdenProducts}

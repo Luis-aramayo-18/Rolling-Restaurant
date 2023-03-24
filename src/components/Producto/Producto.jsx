@@ -11,7 +11,7 @@ const Producto = (props) => {
 
     const popover = (
       <Popover id="popover-basic" name="popOverInfo bg-transparent">
-        <Popover.Body className="popOverInfo text-white">
+        <Popover.Body className="popOverInfo text-light">
             {isActive === true
               ? description
                 : "Disculpe , el producto no se encuentra disponible actualmente"}
@@ -28,27 +28,31 @@ const Producto = (props) => {
 
   return (
 
-      <Card className='' id=''>
-        <OverlayTrigger>
-             
-        </OverlayTrigger>
-        <Card.Body className=''>
-        <div className='d-flex'>
-          <Card.Title className='text-dark'>{name}</Card.Title>
-          <Card.Text className='ms-auto'>
-          </Card.Text>
-          </div>
-          <div className='d-flex'>
-          <img className='img-prod' src={image} alt={name}/>
-          <Card.Text className='text-dark ms-2'>
-            {description}
-          </Card.Text>
-          </div> 
-          <div className='text-end mt-2'>
-          <Button variant="danger" onClick={addProduct}>{`Añadir: $${price}`}</Button>
-          </div>
-        </Card.Body>
-      </Card>
+    <Card id='cardProduct'>
+      <OverlayTrigger 
+      trigger="click"
+      placement="bottom"
+      overlay={popover}
+      rootClose={true}>
+      <Card.Img 
+      className={`${isActive===false? "opacity-50" : "desvanecer img-fluid rounded-start"}`}
+      variant="top" 
+      src={image} 
+      alt={name}/>
+      </OverlayTrigger>
+
+    <Card.Body>
+    <Card.Title className='text-dark'>{name}</Card.Title>
+    <Card.Text className='text-dark'>{description}</Card.Text>
+    <div className='text-end'>
+    <Button 
+      className={`${isActive===false ? "disabled" : ""}`} 
+      variant="success" 
+      onClick={addProduct}>{`${isActive===true ? (`Agregar: $${price}`) : ("no disponible")}`}
+    </Button>
+    </div>
+    </Card.Body>
+    </Card>
 
   )
 }

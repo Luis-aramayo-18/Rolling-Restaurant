@@ -1,7 +1,25 @@
+#cardProduct{
+  background: linear-gradient(to right, rgb(121, 119, 119), rgba(255, 166, 0, 0.705));
+  ;
+}
+
 .img-prod{
     width: 250px;
-    height: 150px;
+    height: 150px;   
     object-fit: cover;
+    border-radius: 10px 10px;
   }
 
- 
+  .popOverInfo {
+    background-color: #832424;
+    border-radius: 10px;
+  }
+
+  .desvanecer:hover {
+    opacity: 0.6;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    -ms-transition: opacity 500ms;
+    transition: opacity 500ms;
+  }
