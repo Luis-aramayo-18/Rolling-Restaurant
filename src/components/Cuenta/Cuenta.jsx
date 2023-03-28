@@ -32,7 +32,7 @@ const Cuenta = () => {
           <hr />
 
           <div className='d-flex justify-content-center'>
-          <div className='bg-light rounded w-50 py-3'>
+          <div className='bg-light rounded py-3'>
           <h2 className='text-dark'>Gracias por elegirnos, esperamos verte pronto 🤗</h2>
           <hr className='text-dark'/>
           <h4 className='text-dark'>Nombre: {nombreUsuario}</h4>
