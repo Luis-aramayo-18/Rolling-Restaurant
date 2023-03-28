@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BarraNav from "../components/BarraNav/BarraNav";
+import Cuenta from "../components/Cuenta/Cuenta";
 import Footer from "../components/Footer/Footer";
 import FormCliente from "../components/FormCliente/FormCliente";
 import Login from "../components/Login/Login";
@@ -23,6 +24,7 @@ const RoutesApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/contacto" element={<Contact />} />
+        
 
         <Route path='/' element={<AuthRoute />}>
          <Route path="/login" element={<Login/>}/>
@@ -33,6 +35,7 @@ const RoutesApp = () => {
         <Route path='/mesa' element={<Mesa/>}/>
         <Route path='/menu' element={<Menu/>}/>
         <Route path="/administracion" element={<Administracion />}/>
+        <Route path="/cuenta" element={<Cuenta />}/>
         </Route>
 
         <Route path="/*" element={<NotFound />} />

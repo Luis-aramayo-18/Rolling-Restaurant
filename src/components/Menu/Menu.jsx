@@ -3,8 +3,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import Producto from '../Producto/Producto';
 import Swal from 'sweetalert2';
+import jwt_decode from "jwt-decode"
+import { useNavigate } from 'react-router-dom';
 
 function MyVerticallyCenteredModal(props) {
+
+    
     const ref = useRef();
     const mesa = localStorage.getItem("mesa");
 
@@ -88,7 +92,20 @@ function MyVerticallyCenteredModal(props) {
       </Modal>
     );
 }
+
+
 const Menu = () => {
+
+  const token = sessionStorage.getItem('token');
+  const dataDecoded = jwt_decode(token)
+  let nombreUsuario = dataDecoded.name
+
+  const navigate = useNavigate();
+
+    const miCuenta =()=>{
+      navigate("/cuenta")
+    }
+
     const [modalShow, setModalShow] = React.useState(false);
     const [products, setProducts]= useState([]);
     const [ordenProducts, setOrdenProducts] = useState([]);
@@ -113,7 +130,8 @@ const Menu = () => {
   return (
     <Container className=''>
         <div className='text-end'>
-        <button onClick={() => setModalShow(true)} type="button" className="btn btn-warning"> Mi pedido {ordenProducts.length}
+        <button onClick={miCuenta} type="button" className="btn btn-warning">Hola {nombreUsuario}!</button>
+        <button onClick={() => setModalShow(true)} type="button" className="ms-2 btn btn-warning">Mi pedido {ordenProducts.length}
         <i class=" ms-2 fa-solid fa-bell-concierge"></i>
         </button>
         <MyVerticallyCenteredModal
@@ -122,8 +140,7 @@ const Menu = () => {
         stateOrder={stateOrder}
         setNewStateOrder={setNewStateOrder}
         show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+        onHide={() => setModalShow(false)}/>
         </div>
         <hr />
         <h1 className='text-center mb-4'>Nuestra carta</h1>

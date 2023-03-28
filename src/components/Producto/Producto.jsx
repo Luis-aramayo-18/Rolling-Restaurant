@@ -35,7 +35,7 @@ const Producto = (props) => {
       overlay={popover}
       rootClose={true}>
       <Card.Img 
-      className={`${isActive===false? "opacity-50" : "desvanecer img-fluid rounded-start"}`}
+      className={`${isActive===false? "opacity-50" : "desvanecer img-fluid rounded-start img-prod"}`}
       variant="top" 
       src={image} 
       alt={name}/>
