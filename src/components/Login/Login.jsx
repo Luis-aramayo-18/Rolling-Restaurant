@@ -70,7 +70,7 @@ const Login = () => {
       <div className='p-4 bg-light rounded'>
             <h1 className='text-center text-dark mb-3'>Bienvenido!</h1>
             <div className='row d-flex justify-content-center align-items-center'>
-            <Form className='w-50 text-center' onSubmit={handleRHF(handleSubmit)}>
+            <Form className='text-center' onSubmit={handleRHF(handleSubmit)}>
               {isError && <Alert variant="danger">{errorMessage || "revise los campos"}</Alert>}
 
         <Form.Group>
