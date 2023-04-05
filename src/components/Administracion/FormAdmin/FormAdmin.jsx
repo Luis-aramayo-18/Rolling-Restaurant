@@ -106,7 +106,7 @@ const FormAdmin = (props) => {
   };
 
   return (
-    <Card className="formAdminCard">
+    <Card>
       <Card.Body>
         <Card.Title className="text-dark">
            {modifyingProduct ? "Editar Producto" : "Añadir Producto"}
