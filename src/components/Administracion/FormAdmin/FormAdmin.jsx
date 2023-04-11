@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useEffect } from "react";
 
 import "./formAdmin.css";
+import { NavLink } from "react-router-dom";
 
 const FormAdmin = (props) => {
   const { modifyingProduct, setModifyingProduct } = props;
@@ -240,6 +241,14 @@ const FormAdmin = (props) => {
           </div>
         </Form>
       </Card.Body>
+      <hr />
+      <div className="ms-3 text-center py-2">
+            <NavLink to="/menu">
+              <button type="button" className="bg-success rounded">
+              menu
+              </button>
+            </NavLink>
+          </div>
     </Card>
   );
 };
