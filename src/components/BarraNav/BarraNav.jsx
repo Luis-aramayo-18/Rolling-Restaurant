@@ -64,6 +64,7 @@ const BarraNav = () => {
               Contacto
             </NavLink>
           </Nav>
+
           <div className="ms-3 text-center py-2">
             <NavLink to="/login">
               <button onClick={handleClick} type="button" className="bg-danger rounded">
@@ -71,6 +72,17 @@ const BarraNav = () => {
               </button>
             </NavLink>
           </div>
+
+          { token &&
+          <div className="ms-3 text-center py-2">
+            <NavLink to="/administracion">
+              <button type="button" className="bg-success rounded">
+              admin
+              </button>
+            </NavLink>
+          </div>
+          }
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
