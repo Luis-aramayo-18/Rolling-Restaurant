@@ -4,9 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 import logo from "./logo_2.png";
 
-let tokenAdmin = ""
+
 
 const BarraNav = () => {
+
+  let tokenAdmin=false
+
   let activeStyle = {
     color: "#ff0000",
   };
@@ -16,16 +19,16 @@ const BarraNav = () => {
   };
 
   const token = sessionStorage.getItem("token")
-  
 
-  const dataDecoded = jwt_decode(token);
-  let adminLogueado = dataDecoded.isAdmin;
-  
-
-  if(adminLogueado === true){
-    tokenAdmin = adminLogueado
+  if(token){
+    const dataDecoded = jwt_decode(token)
+    let adminLogueado = dataDecoded.isAdmin;
+    
+    if(adminLogueado===true){
+      tokenAdmin=true
+    }
   }
-
+  
   const handleClick =()=>{
     if(token){
     sessionStorage.clear()
