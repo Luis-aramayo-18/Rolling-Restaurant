@@ -1,7 +1,10 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
+import jwt_decode from "jwt-decode"
 import logo from "./logo_2.png";
+
+let tokenAdmin = ""
 
 const BarraNav = () => {
   let activeStyle = {
@@ -13,6 +16,15 @@ const BarraNav = () => {
   };
 
   const token = sessionStorage.getItem("token")
+  
+
+  const dataDecoded = jwt_decode(token);
+  let adminLogueado = dataDecoded.isAdmin;
+  
+
+  if(adminLogueado === true){
+    tokenAdmin = adminLogueado
+  }
 
   const handleClick =()=>{
     if(token){
@@ -73,7 +85,7 @@ const BarraNav = () => {
             </NavLink>
           </div>
 
-          { token &&
+          { tokenAdmin &&
           <div className="ms-3 text-center py-2">
             <NavLink to="/administracion">
               <button type="button" className="bg-success rounded">
