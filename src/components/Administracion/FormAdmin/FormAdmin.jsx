@@ -240,11 +240,11 @@ const FormAdmin = (props) => {
           </Form.Group>
 
           <div className="text-end">
+            <Button className="me-2" onClick={handleClick} variant="success" type="button">
+              Menu
+            </Button>
             <Button variant="danger" type="submit">
               {modifyingProduct ? "Editar" : "Añadir"}
-            </Button>
-            <Button onClick={handleClick} variant="success" type="button">
-              Menu
             </Button>
           </div>
         </Form>
