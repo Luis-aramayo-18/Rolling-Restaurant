@@ -4,12 +4,13 @@ import { ErrorMessage } from "@hookform/error-message";
 import axios from "../../../api/axios";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 
 import "./formAdmin.css";
-import { NavLink } from "react-router-dom";
 
 const FormAdmin = (props) => {
   const { modifyingProduct, setModifyingProduct } = props;
+  const navigate = useNavigate()
 
   const {
     register,
@@ -17,6 +18,10 @@ const FormAdmin = (props) => {
     formState: { errors },
     setValue,
   } = useForm();
+
+  const handleClick = ()=>{
+    navigate("/menu")
+  }
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -238,17 +243,12 @@ const FormAdmin = (props) => {
             <Button variant="danger" type="submit">
               {modifyingProduct ? "Editar" : "Añadir"}
             </Button>
+            <Button onClick={handleClick} variant="success" type="button">
+              Menu
+            </Button>
           </div>
         </Form>
       </Card.Body>
-      <hr />
-      <div className="ms-3 text-center py-2">
-            <NavLink to="/menu">
-              <button type="button" className="bg-success rounded">
-              menu
-              </button>
-            </NavLink>
-          </div>
     </Card>
   );
 };
